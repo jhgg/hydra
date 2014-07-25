@@ -11,6 +11,8 @@ int luaopen_audiodevice(lua_State* L);
 int luaopen_brightness(lua_State* L);
 int luaopen_battery(lua_State* L);
 int luaopen_battery_watcher(lua_State* L);
+int luaopen_experimental(lua_State* L);
+int luaopen_experimental_window(lua_State* L);
 //int luaopen_eventtap(lua_State* L);
 int luaopen_geometry(lua_State* L);
 int luaopen_hotkey(lua_State* L);
@@ -36,6 +38,7 @@ int luaopen_timer(lua_State* L);
 int luaopen_utf8(lua_State* L);
 int luaopen_window(lua_State* L);
 
+
 @interface HydraAppDelegate : NSObject <NSApplicationDelegate>
 @end
 
@@ -58,6 +61,10 @@ static const hydralib hydralibs[] = {
     }},
     {"brightness",   luaopen_brightness},
 //    {"eventtap",     luaopen_eventtap},
+    {"experimental", luaopen_experimental, (hydralib[]) {
+        {"window", luaopen_experimental_window},
+        {}
+    }},
     {"geometry",     luaopen_geometry},
     {"hotkey",       luaopen_hotkey},
     {"http",         luaopen_http},
